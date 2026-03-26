@@ -91,7 +91,13 @@ app.use((req, res, next) => {
 //     let registeredUser = await User.register(fakeUser, "Ayushrai@123fu");
 //     res.send(registeredUser);
 // });
-
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "OK",
+        uptime: process.uptime(),
+        timestamp: Date.now()
+    });
+});
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.get("/", (req, res) => {
